@@ -27,40 +27,43 @@
       </div>
     </nav>
     <main>
-      <form class="form" id="contactUs" style="height: 250px">
-        <legend><h1>Send Us a Message</h1></legend>
-        <div id="contact">
-          <br />
-          <label for="email">
+      <div class="form">
+        <form id="contactUs">
+          <legend><h1>Send Us a Message</h1></legend>
+          <div id="contact">
+            <br />
+            <label for="email">
+              <input
+                id="userEmail"
+                type="email"
+                placeholder="Enter Your Email"
+                required
+              />
+            </label>
+            <br />
+            <label for="message"
+              >Enter Your Message Below And We Will Get Back To You Within 3
+              Business days.
+              <textarea id="userMessage" name="message"></textarea>
+            </label>
+            <br />
+            <input class="send" type="submit" value="Send message" />
+            <br />
             <input
-              id="userEmail"
-              type="email"
-              placeholder="Enter Your Email"
-              required
+              class="white red emergency"
+              type="submit"
+              value="Emergency message"
             />
-          </label>
-          <br />
-          <label for="message"
-            >Enter Your Message Below And We Will Get Back To You Within 3
-            Busiess days.
-            <textarea
-              id="userMessage"
-              name="message"
-              id="message"
-              rows="10"
-              cols="40"
-            ></textarea>
-          </label>
-          <br />
-          <input class="send" type="submit" value="Send message" />
-          <br />
-          <input
-            class="white red emergency"
-            type="submit"
-            value="Emergency message"
-          />
-        </div>
-      </form>
+          </div>
+        </form>
+      </div>
+      <div class="list">
+        <ul>
+          Messages
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
     </main>
     <footer>
       Produced by: Katie Nink Smith, with her blood sweat and tears
