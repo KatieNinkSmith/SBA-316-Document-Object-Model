@@ -1,11 +1,14 @@
 console.log("my script is linked!");
 
 const form = document.querySelector("form");
-console.log(form); // getting the whole form to set a width
-form.style.width = "50%"; // setting width of the form within main
-const list = document.querySelector(".list");
-console.log(list);
-list.style.width = "50%";
+console.log(form);
+form.style.width = "50%";
+form.style.display = "flex";
+form.style.flexDirection = "column";
+form.style.flexWrap = "nowrap"; // getting the whole form to set a width
+// const list = document.querySelector(".list");
+// console.log(list);
+// list.style.width = "50%";
 
 const formDiv = document.getElementById("contact");
 console.log(formDiv); // getting the form to push new elements into
@@ -16,8 +19,11 @@ console.log(message); // getting the message to pull message.value for storage
 
 const emergency = document.querySelector(".emergency");
 console.log(emergency); // emergency input so add event to the click
+const send = document.querySelector(".send");
+console.log(send);
 
-emergency.addEventListener("submit", function (evt) {
+emergency.addEventListener("submit", toggleSubmit);
+function toggleSubmit(evt) {
   // event toggles emergency button to red and does a pop up alert to confirm if your message is an emergency
   emergency.classList.toggle(
     "red"
@@ -33,10 +39,11 @@ emergency.addEventListener("submit", function (evt) {
   //   Message: message.input,
   //   // confirm("We will get back to you ASAP!")
   // };
-});
+}
 
 const phone = document.createElement("input"); // create an <phone> element
 console.log(phone);
+phone.setAttribute("id", "userPhone");
 phone.setAttribute("type", "tel"); // set type
 phone.setAttribute("placeHolder", "Enter your phone number"); // create placeholder
 phone.setAttribute("required", "true"); // make required
@@ -44,18 +51,23 @@ phone.setAttribute("minlength", "10"); // set min length
 phone.setAttribute("maxlength", "10"); // set max length
 formDiv.prepend(phone); // push it into the form
 
-const label = document.createElement("label"); // create a <label> element.
-label.setAttribute("for", "phoneNumber"); // set the type
-// label.textContent = ["Please enter your phone number."];
-formDiv.prepend(label); // push it into the form
+const br = document.createElement("br");
+formDiv.prepend(br);
+// const label = document.createElement("label"); // create a <label> element.
+// label.setAttribute("for", "phoneNumber"); // set the type
+// // label.textContent = ["Please enter your phone number."];
+// formDiv.prepend(label); // push it into the form
 
 const userName = document.createElement("input"); // create an <input> for a name
+userName.setAttribute("id", "userName");
 userName.setAttribute("type", "text"); // set the type
 userName.setAttribute("required", "true"); // set to required
 userName.setAttribute("placeHolder", "Enter your name"); // set the place holder
 formDiv.prepend(userName); // push into the form
 
-phone.addEventListener("input", function (evt) {
+phone.addEventListener("input", phoneInput);
+function phoneInput(evt) {
+  // evt.preventDefalut();
   // add event listener to the input that validates the phone number entered
   if (!/^\d+$/.test(phone.value)) {
     this.setCustomValidity("Enter only numbers for your phone number");
@@ -71,8 +83,9 @@ phone.addEventListener("input", function (evt) {
   } // does not allow input to be longer than max
   this.setCustomValidity(" ");
   return true; // removes message
-});
-send.addEventListener("submit", function (evt) {
+}
+send.addEventListener("submit", sendMessage);
+function sendMessage(evt) {
   // add event to the send input
   // return {
   //   Name: userName.input,
@@ -81,7 +94,7 @@ send.addEventListener("submit", function (evt) {
   //   Message: message.input,
   //   // confirm("We will get back to you within 3 business days")
   // };
-}); // supposed to return the input for storage
+} // supposed to return the input for storage
 
 // btn.addEventListener("click", function () { // supposed to effect both inputs
 //   btn.forEach(() => { // create an li element for the input to be saved into
