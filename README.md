@@ -10,6 +10,7 @@ Since topic and content are secondary to functionality for this assessment, we h
 PLANNING
 Just one page
 toggle light and dark mode is a simple option for an event listener and event handler functions with user interaction changing the style. I think ill use toggle to change color of the form background on the emergency form and ask are you sure you want to submit an emergency ticket.
+make another page with a list that stores the name, phone, email and message. if they click send message it is added to the end of the list. if they click emergency message it is added to the top of the list highlighted yellow/red.
 
 Requirements
 x--Cache at least one element using selectElementById.
@@ -25,5 +26,3 @@ Use at least two Browser Object Model (BOM) properties or methods.
 x--Include at least one form and/or input with HTML attribute validation.
 x--Include at least one form and/or input with DOM event-based validation. (This can be the same form or input as the one above, but should include event-based validation in addition to the HTML attribute validation.)
 Ensure that the program runs without errors (comment out things that do not work, and explain your blockers - you can still receive partial credit).
-
-make another page with a list that stores the name, phone, email and message. if they click send message it is added to the end of the list. if they click emergency message it is added to the top of the list highlighted yellow/red.

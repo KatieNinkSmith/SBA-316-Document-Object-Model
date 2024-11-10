@@ -9,22 +9,42 @@
   </head>
   <body>
     <nav>
-      <img id="logo2" src="./images/well-logoHome.jpg" alt="well logo" />
+      <div class="container">
+        <ul>
+          <li>
+            <a href="./index.html"
+              ><img
+                id="logo2"
+                src="./images/well-logoHome.jpg"
+                alt="well logo"
+              />
+            </a>
+          </li>
+          <li style="height: 22px">
+            <a href="./pages/page2.html">Messages</a>
+          </li>
+        </ul>
+      </div>
     </nav>
     <main>
       <form class="form" id="contactUs" style="height: 250px">
         <legend><h1>Send Us a Message</h1></legend>
         <div id="contact">
           <br />
-          <label for="email"
-            >Please enter your email
-            <input type="email" placeholder="Enter Your Email" required />
+          <label for="email">
+            <input
+              id="userEmail"
+              type="email"
+              placeholder="Enter Your Email"
+              required
+            />
           </label>
           <br />
           <label for="message"
             >Enter Your Message Below And We Will Get Back To You Within 3
             Busiess days.
             <textarea
+              id="userMessage"
               name="message"
               id="message"
               rows="10"
@@ -32,8 +52,13 @@
             ></textarea>
           </label>
           <br />
-          <input type="submit" value="Send message" />
-          <input class="white red" type="submit" value="Emergency message" />
+          <input class="send" type="submit" value="Send message" />
+          <br />
+          <input
+            class="white red emergency"
+            type="submit"
+            value="Emergency message"
+          />
         </div>
       </form>
     </main>

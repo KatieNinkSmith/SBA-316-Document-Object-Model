@@ -5,24 +5,55 @@ console.log(form); // getting the whole form idk why i havent used it
 form.style.width = "50%";
 
 const formDiv = document.getElementById("contact");
-console.log(formDiv); // getting the next step in of my form also idk why i havent used it
+console.log(formDiv); // getting the form to push new elements into
+const email = document.getElementById("userEmail");
+console.log(email);
+const message = document.getElementById("userMessage");
+console.log(message);
 
-const emergency = document.querySelector(".white");
+const emergency = document.querySelector(".emergency");
 console.log(emergency); //
 
-const input = document.createElement("input"); // create an <input> element
-input.setAttribute("type", "tel");
-input.setAttribute("placeHolder", "Enter you phone number");
-input.setAttribute("required", "true");
-input.setAttribute("minlength", "10");
-input.setAttribute("maxlength", "10");
-// input.setAttribute("pattern", "[^/^d+$/]");
+emergency.addEventListener("submit", function (evt) {
+  emergency.classList.toggle(
+    "red"
+    // alert(
+    //   "If you would like to Submit this as an emergency it will be moved to the top of the que"
+    // )
+  );
+  // return {
+  //   Name: userName.input,
+  //   Phone: phone.input,
+  //   Email: email.input,
+  //   Message: message.input,
+  //   // confirm("We will get back to you ASAP!")
+  // };
+});
 
-// input.setAttribute("requiered"); cant set attribute as required
-formDiv.prepend(input);
+const phone = document.createElement("input"); // create an <phone> element
+console.log(phone);
+phone.setAttribute("type", "tel"); // set type
+phone.setAttribute("placeHolder", "Enter your phone number"); // create placeholder
+phone.setAttribute("required", "true"); // make required
+phone.setAttribute("minlength", "10"); // set min length
+phone.setAttribute("maxlength", "10"); // set max length
+formDiv.prepend(phone); // push it into the form
 
-input.addEventListener("input", function (e) {
-  if (!/^\d+$/.test(input.value)) {
+const label = document.createElement("label"); // create a <label> element.
+label.setAttribute("for", "phoneNumber"); // set the type
+// label.textContent = ["Please enter your phone number."];
+formDiv.prepend(label);
+
+const userName = document.createElement("input");
+userName.setAttribute("type", "text");
+userName.setAttribute("required", "true0");
+userName.setAttribute("placeHolder", "Enter your name");
+formDiv.prepend(userName);
+// const userphone = phone();
+// console.log(userphone);
+
+phone.addEventListener("input", function (evt) {
+  if (!/^\d+$/.test(phone.value)) {
     this.setCustomValidity("Enter only numbers for your phone number");
     return false;
   }
@@ -31,44 +62,35 @@ input.addEventListener("input", function (e) {
     return false;
   }
   if (this.value.length > this.maxLength) {
-    this.value = this.value.slice(0, this.maxLength); // Truncate if longer than max
+    this.value = this.value.slice(0, this.maxLength); // does not allow phone if longer than max
     return false;
   }
-  if (this.value === 10) {
-    this.validity = valid;
-    console.log(this.validity);
-    return true;
-  }
+  this.setCustomValidity(" ");
+  return true;
 });
 
-const label = document.createElement("label"); // create a <label> element.
-label.setAttribute("for", "phoneNumber"); // set the type
-label.textContent = ["Please enter your phone number."];
-formDiv.prepend(label);
+// btn.addEventListener("click", function () {
+//   btn.forEach(() => {
+//     const li = document.createElement("li");
+//     const input = document.querySelector("input");
+//     console.log(input.value);
+//     if (input.value.trim() == "") return;
+//     li.textContent = input.value;
+//     document.querySelector("ul").appendChild(li);
+//     input.value = "";
+//   });
+// });
+// btn.addEventListener("click", handleBtnClick);
 
-// const userInput = input();
-// console.log(userInput);
-
-emergency.addEventListener("click", () => {
-  console.log(emergency.classList.toggle("white"));
-});
-
-input.addEventListener("onKeyDown", (evt) => {
-  evt.preventDefault();
-  if (input.value !== "/^d+$/") {
-    // evt.preventDefault();
-    this.setCustomValidity("Enter only numbers for your phone number");
-    return false;
-  } else if (this.value.length > this.maxLength) {
-    // evt.preventDefault();
-    this.value = this.value.slice(0, this.maxLength);
-    // this.value.setCustomValidity(" ");
-  }
-  return {
-    phone: "input.value",
-  };
-});
-
+// function handleBtnClick(evt) {
+//   const li = document.createElement("li");
+//   const input = document.querySelector("input");
+//   console.log(input.value);
+//   if (input.value.trim() == "") return;
+//   li.textContent = input.value;
+//   document.querySelector("ul").appendChild(li);
+//   input.value = "";
+// }
 // function textAreaCharacterCount(evt){
 //   evt.preventDefault();
 //   if (){
