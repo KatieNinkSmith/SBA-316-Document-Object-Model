@@ -22,31 +22,15 @@ console.log(emergency); // emergency input so add event to the click
 const send = document.querySelector(".send");
 console.log(send);
 
-emergency.addEventListener("submit", toggleSubmit);
-function toggleSubmit(evt) {
-  // event toggles emergency button to red and does a pop up alert to confirm if your message is an emergency
-  emergency.classList.toggle(
-    "red"
-    // alert(
-    //   "If you would like to Submit this as an emergency it will be moved to the top of the que"
-    // )
-  );
-  //event is also supposed to save input data to push into a list
-  // return {
-  //   Name: userName.input,
-  //   Phone: phone.input,
-  //   Email: email.input,
-  //   Message: message.input,
-  //   // confirm("We will get back to you ASAP!")
-  // };
-}
+// emergency.addEventListener("submit", toggleSubmit);
 
 const phone = document.createElement("input"); // create an <phone> element
 console.log(phone);
 phone.setAttribute("id", "userPhone");
 phone.setAttribute("type", "tel"); // set type
-phone.setAttribute("placeHolder", "Enter your phone number"); // create placeholder
 phone.setAttribute("required", "true"); // make required
+
+phone.setAttribute("placeHolder", "Enter your phone number"); // create placeholder
 phone.setAttribute("minlength", "10"); // set min length
 phone.setAttribute("maxlength", "10"); // set max length
 formDiv.prepend(phone); // push it into the form
@@ -65,37 +49,64 @@ userName.setAttribute("required", "true"); // set to required
 userName.setAttribute("placeHolder", "Enter your name"); // set the place holder
 formDiv.prepend(userName); // push into the form
 
-phone.addEventListener("input", phoneInput);
-function phoneInput(evt) {
-  // evt.preventDefalut();
-  // add event listener to the input that validates the phone number entered
-  if (!/^\d+$/.test(phone.value)) {
-    this.setCustomValidity("Enter only numbers for your phone number");
-    return false;
-  } // must be numbers
-  if (this.value.length < this.minLength) {
-    this.setCustomValidity("Enter the correct length phone number");
-    return false;
-  } // makes sure it is the length of a phone number
-  if (this.value.length > this.maxLength) {
-    this.value = this.value.slice(0, this.maxLength);
-    return false;
-  } // does not allow input to be longer than max
-  this.setCustomValidity(" ");
-  return true; // removes message
-}
-send.addEventListener("submit", sendMessage);
-function sendMessage(evt) {
-  // add event to the send input
-  // return {
-  //   Name: userName.input,
-  //   Phone: phone.input,
-  //   Email: email.input,
-  //   Message: message.input,
-  //   // confirm("We will get back to you within 3 business days")
-  // };
-} // supposed to return the input for storage
+formDiv.addEventListener("click", function () {
+  evt.preventDefault();
 
+  // phone.addEventListener("input", phoneInput);
+  function phoneInput(evt) {
+    evt.preventDefault();
+    // add event listener to the input that validates the phone number entered
+    if (!/^\d+$/.test(phone.value)) {
+      this.setCustomValidity("Enter only numbers for your phone number");
+      return false;
+    } // must be numbers
+    if (this.value.length < this.minLength) {
+      this.setCustomValidity("Enter the correct length phone number");
+      return false;
+    } // makes sure it is the length of a phone number
+    if (this.value.length > this.maxLength) {
+      this.value = this.value.slice(0, this.maxLength);
+      return false;
+    } // does not allow input to be longer than max
+    this.setCustomValidity(" ");
+    return true; // removes message
+  }
+  phoneInput();
+  function toggleSubmit(evt) {
+    evt.preventDefault();
+
+    // event toggles emergency button to red and does a pop up alert to confirm if your message is an emergency
+    emergency.classList.toggle(
+      "red",
+      alert(
+        "If you would like to Submit this as an emergency it will be moved to the top of the que"
+      )
+    );
+    //event is also supposed to save input data to push into a list
+    // return {
+    //   Name: userName.input,
+    //   Phone: phone.input,
+    //   Email: email.input,
+    //   Message: message.input,
+    //   // confirm("We will get back to you ASAP!")
+    // };
+  }
+  toggleSubmit();
+  // send.addEventListener("submit", sendMessage);
+  function sendMessage(evt) {
+    evt.preventDefault();
+
+    // add event to the send input
+    return {
+      Name: userName.input,
+      Phone: phone.input,
+      Email: email.input,
+      Message: message.input,
+      // confirm("We will get back to you within 3 business days")
+    };
+  } // supposed to return the input for storage
+  sendMessage();
+});
 // btn.addEventListener("click", function () { // supposed to effect both inputs
 //   btn.forEach(() => { // create an li element for the input to be saved into
 //     const li = document.createElement("li");
@@ -107,3 +118,15 @@ function sendMessage(evt) {
 //   });
 // });
 // btn.addEventListener("click", handleBtnClick);
+
+// const keyListener = new Object();
+
+// keyListener.onKeyUp = Delegate.create(this, keyUpHandler);
+
+// function keyUpHandler() {
+//   if (Key.getCode() == 13) {
+//     Selection.setFocus(null);
+//   } else {
+//   }
+// }
+// focusManager.enabled = false;
