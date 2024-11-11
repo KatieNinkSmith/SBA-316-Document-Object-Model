@@ -17,8 +17,8 @@ console.log(email); // getting the email to pull email.value for storage
 const message = document.getElementById("userMessage");
 console.log(message); // getting the message to pull message.value for storage
 
-const emergency = document.querySelector(".emergency");
-console.log(emergency); // emergency input so add event to the click
+// const emergency = document.querySelector(".emergency");
+// console.log(emergency); // emergency input so add event to the click
 const send = document.querySelector(".send");
 console.log(send);
 
@@ -29,7 +29,7 @@ console.log(phone);
 phone.setAttribute("id", "userPhone");
 phone.setAttribute("type", "tel"); // set type
 phone.setAttribute("required", "true"); // make required
-
+// phone.setAttribute("pattern", "!/^d+$/");
 phone.setAttribute("placeHolder", "Enter your phone number"); // create placeholder
 phone.setAttribute("minlength", "10"); // set min length
 phone.setAttribute("maxlength", "10"); // set max length
@@ -49,84 +49,62 @@ userName.setAttribute("required", "true"); // set to required
 userName.setAttribute("placeHolder", "Enter your name"); // set the place holder
 formDiv.prepend(userName); // push into the form
 
-formDiv.addEventListener("click", function () {
-  evt.preventDefault();
-
-  // phone.addEventListener("input", phoneInput);
-  function phoneInput(evt) {
-    evt.preventDefault();
-    // add event listener to the input that validates the phone number entered
-    if (!/^\d+$/.test(phone.value)) {
-      this.setCustomValidity("Enter only numbers for your phone number");
-      return false;
-    } // must be numbers
-    if (this.value.length < this.minLength) {
-      this.setCustomValidity("Enter the correct length phone number");
-      return false;
-    } // makes sure it is the length of a phone number
-    if (this.value.length > this.maxLength) {
-      this.value = this.value.slice(0, this.maxLength);
-      return false;
-    } // does not allow input to be longer than max
-    this.setCustomValidity(" ");
-    return true; // removes message
-  }
-  phoneInput();
-  function toggleSubmit(evt) {
-    evt.preventDefault();
-
-    // event toggles emergency button to red and does a pop up alert to confirm if your message is an emergency
-    emergency.classList.toggle(
-      "red",
-      alert(
-        "If you would like to Submit this as an emergency it will be moved to the top of the que"
-      )
-    );
-    //event is also supposed to save input data to push into a list
-    // return {
-    //   Name: userName.input,
-    //   Phone: phone.input,
-    //   Email: email.input,
-    //   Message: message.input,
-    //   // confirm("We will get back to you ASAP!")
-    // };
-  }
-  toggleSubmit();
-  // send.addEventListener("submit", sendMessage);
-  function sendMessage(evt) {
-    evt.preventDefault();
-
-    // add event to the send input
-    return {
-      Name: userName.input,
-      Phone: phone.input,
-      Email: email.input,
-      Message: message.input,
-      // confirm("We will get back to you within 3 business days")
-    };
-  } // supposed to return the input for storage
-  sendMessage();
+formDiv.addEventListener("click", function (evt) {
+  formDiv.preventDefault();
+  checkInputs();
+  return true;
 });
-// btn.addEventListener("click", function () { // supposed to effect both inputs
-//   btn.forEach(() => { // create an li element for the input to be saved into
-//     const li = document.createElement("li");
-//     const storageInfo =
-//     if (input.value.trim() == "") return;
-//     li.textContent = input.value;
-//     document.querySelector("ul").appendChild(li);
-//     input.value = "";
-//   });
-// });
-// btn.addEventListener("click", handleBtnClick);
+// phone.addEventListener("input", phoneInput);
+// add event listener to the input that validates the phone number entered
+function checkInputs(evt) {
+  if (!/^\d+$/.test(phone.value)) {
+    phone.setCustomValidity("Enter only numbers for your phone number");
+    return false;
+  } // must be numbers
+  if (phone.value.length < phone.minLength) {
+    phone.setCustomValidity("Enter the correct length phone number");
+    return false;
+  } // makes sure it is the length of a phone number
+  if (phone.value.length > phone.maxLength) {
+    phone.value = phone.value.slice(0, phone.maxLength);
+    return false;
+  } // does not allow input to be longer than max
+  phone.setCustomValidity(" ");
+  return true; // removes message
+}
 
-// const keyListener = new Object();
-
-// keyListener.onKeyUp = Delegate.create(this, keyUpHandler);
-
-// function keyUpHandler() {
-//   if (Key.getCode() == 13) {
-//     Selection.setFocus(null);
-//   } else {
-//   }
+formDiv.addEventListener("click", function thanks(evt) {
+  send.setTimeout(() => {
+    send.classlist.toggle("thankYou");
+  }, 5000);
+});
+// function toggleSubmit(evt) {
+//   // evt.preventdefault();
+//   // event toggles emergency button to red and does a pop up alert to confirm if your message is an emergency
+//   emergency.classList.toggle(
+//     "red"
+//     // alert(
+//     //   "If you would like to Submit this as an emergency it will be moved to the top of the que"
+//     // )
+//   );
+//   //event is also supposed to save input data to push into a list
+//   // return {
+//   //   Name: userName.input,
+//   //   Phone: phone.input,
+//   //   Email: email.input,
+//   //   Message: message.input,
+//   //   // confirm("We will get back to you ASAP!")
+//   // };
 // }
-// focusManager.enabled = false;
+// send.addEventListener("submit", sendMessage);
+function sendMessage(evt) {
+  evt.preventdefault();
+  // add event to the send input
+  return {
+    Name: userName.input,
+    Phone: phone.input,
+    Email: email.input,
+    Message: message.input,
+    // confirm("We will get back to you within 3 business days")
+  };
+} // supposed to return the input for storage

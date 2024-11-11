@@ -8,7 +8,7 @@ body {
   flex-direction: column;
   /* justify-content: center;
   align-items: center; */
-  height: 100vh;
+  min-height: 100vh;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 nav {
@@ -46,6 +46,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   /* flex-direction: row; */
   /* flex-wrap: wrap; */
   /* margin-bottom: 100px; */
@@ -72,6 +73,16 @@ main {
 input {
   border: 1px solid black;
   border-radius: 2px;
+}
+.thankYou {
+  border: 1px solid #00072d;
+  border-radius: 5px;
+  background-color: #00072d;
+  color: #a6e1fa;
+  padding: 4px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
 }
 footer {
   /* background-color: aquamarine; */
