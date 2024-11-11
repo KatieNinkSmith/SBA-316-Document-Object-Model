@@ -1,11 +1,12 @@
 console.log("my script is linked!");
 
-const form = document.querySelector("form");
+const form = document.getElementById("form");
 console.log(form);
 form.style.width = "50%";
 form.style.display = "flex";
 form.style.flexDirection = "column";
 form.style.flexWrap = "nowrap"; // getting the whole form to set a width
+// form.setAttribute("action", "./pages/page2.html");
 // const list = document.querySelector(".list");
 // console.log(list);
 // list.style.width = "50%";
@@ -50,34 +51,37 @@ userName.setAttribute("placeHolder", "Enter your name"); // set the place holder
 formDiv.prepend(userName); // push into the form
 
 formDiv.addEventListener("click", function (evt) {
-  formDiv.preventDefault();
+  // phone.addEventListener("input", phoneInput);
+  // add event listener to the input that validates the phone number entered
+  function checkInputs(evt) {
+    evt.preventDefault();
+
+    if (!/^\d+$/.test(phone.value)) {
+      phone.setCustomValidity("Enter only numbers for your phone number");
+      return false;
+    } // must be numbers
+    else if (phone.value.length < phone.minLength) {
+      phone.setCustomValidity("Enter the correct length phone number");
+      return false;
+    } // makes sure it is the length of a phone number
+    else if (phone.value.length > phone.maxLength) {
+      phone.value = phone.value.slice(0, phone.maxLength);
+      return false;
+    } // does not allow input to be longer than max
+    else {
+      phone.setCustomValidity(" ");
+      // document.getElementsByClass(".thankYou").style.visibility = "shown";
+      return true; // removes message
+    }
+  }
   checkInputs();
   return true;
 });
-// phone.addEventListener("input", phoneInput);
-// add event listener to the input that validates the phone number entered
-function checkInputs(evt) {
-  if (!/^\d+$/.test(phone.value)) {
-    phone.setCustomValidity("Enter only numbers for your phone number");
-    return false;
-  } // must be numbers
-  if (phone.value.length < phone.minLength) {
-    phone.setCustomValidity("Enter the correct length phone number");
-    return false;
-  } // makes sure it is the length of a phone number
-  if (phone.value.length > phone.maxLength) {
-    phone.value = phone.value.slice(0, phone.maxLength);
-    return false;
-  } // does not allow input to be longer than max
-  phone.setCustomValidity(" ");
-  return true; // removes message
-}
-
-formDiv.addEventListener("click", function thanks(evt) {
-  send.setTimeout(() => {
-    send.classlist.toggle("thankYou");
-  }, 5000);
-});
+// formDiv.addEventListener("click", function thanks(evt) {
+//   send.setTimeout(() => {
+//     send.classlist.toggle("thankYou");
+//   }, 5000);
+// });
 // function toggleSubmit(evt) {
 //   // evt.preventdefault();
 //   // event toggles emergency button to red and does a pop up alert to confirm if your message is an emergency
@@ -97,14 +101,25 @@ formDiv.addEventListener("click", function thanks(evt) {
 //   // };
 // }
 // send.addEventListener("submit", sendMessage);
-function sendMessage(evt) {
-  evt.preventdefault();
-  // add event to the send input
-  return {
-    Name: userName.input,
-    Phone: phone.input,
-    Email: email.input,
-    Message: message.input,
-    // confirm("We will get back to you within 3 business days")
-  };
-} // supposed to return the input for storage
+// function sendMessage(evt) {
+//   evt.preventdefault();
+//   // add event to the send input
+//   return {
+//     Name: userName.input,
+//     Phone: phone.input,
+//     Email: email.input,
+//     Message: message.input,
+//     // confirm("We will get back to you within 3 business days")
+//   };
+// } // supposed to return the input for storage
+const ul = document.querySelector("ul");
+
+ul.addEventListener("click", () => {
+  const swap = document.querySelectorAll("li");
+  console.log(swap);
+  swap.forEach((item) => {
+    item.classList.toggle("highlight");
+  });
+});
+
+// Add an event listener and now you can swap between highlighting you Ul with a click or whatever you want

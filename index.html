@@ -9,25 +9,15 @@
   </head>
   <body>
     <nav>
-      <div class="container">
-        <ul>
-          <li>
-            <a href="./index.html"
-              ><img
-                id="logo2"
-                src="./images/well-logoHome.jpg"
-                alt="well logo"
-              />
-            </a>
-          </li>
-          <li style="height: 22px">
-            <a href="./pages/page2.html">Thanks</a>
-          </li>
-        </ul>
+      <div class="homeImage">
+        <img id="logo2" src="./images/well-logoHome.jpg" alt="well logo" />
+      </div>
+      <div class="navigation">
+        <a href="./pages/page2.html">Messages</a>
       </div>
     </nav>
     <main>
-      <form action="./pages/page2.html">
+      <form id="form">
         <legend><h1>Send Us a Message</h1></legend>
         <div id="contact">
           <br />
@@ -49,8 +39,18 @@
           <br />
           <input class="send" type="submit" value="Send message" />
           <br />
+          <h2 class="thankYou">Thank you for your message!</h2>
         </div>
       </form>
+      <div>
+        <ul>
+          Message Idea Reasons
+          <li>Emergency no power at well</li>
+          <li>Emergency pump is not running no pressure</li>
+          <li>I wont be able to pay my bill on time</li>
+          <li>Hey can I get a log of my payments</li>
+        </ul>
+      </div>
     </main>
     <footer>
       Produced by: Katie Nink Smith, with her blood sweat and tears
